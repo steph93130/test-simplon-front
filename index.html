@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blagues Carambar</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffdf00;
+            color: #8b0000;
+            margin: 0;
+            padding: 50px;
+        }
+        h1 {
+            font-size: 2.5em;
+        }
+        .joke-container {
+            font-size: 1.5em;
+            margin: 20px auto;
+            padding: 20px;
+            border: 2px solid #8b0000;
+            border-radius: 10px;
+            background-color: #fff;
+            max-width: 500px;
+        }
+        button {
+            font-size: 1.2em;
+            padding: 10px 20px;
+            background-color: #8b0000;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #a52a2a;
+        }
+        .banner {
+            min-height: 300px;
+            background-image: url(img/banner.webp);
+            background-repeat: no-repeat;
+            background-size: contain;
+            background-position: center center;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="banner"></div>
+    <h1>Blagues Carambar</h1>
+    <div class="joke-container" id="joke">Cliquez sur le bouton pour une blague !</div>
+    <button onclick="fetchJoke()">Obtenir une blague</button>
+
+    <script>
+        async function fetchJoke() {
+            try {
+                const response = await fetch('https://test-simplon-l2ua.onrender.com'); // Remplace par l'URL de ton API
+                const data = await response.json();
+                document.getElementById('joke').innerText = data.content;
+            } catch (error) {
+                document.getElementById('joke').innerText = "Impossible de récupérer une blague...";
+            }
+        }
+    </script>
+</body>
+</html>
